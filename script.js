@@ -18,7 +18,7 @@ async function carregarDados() {
 
     try {
 
-        const resposta = await fetch("dados.json");
+        const resposta = await fetch('https://thelucasb.github.io/painel-salas-dados/dados.json')
 
         const dados = await resposta.json();
 
