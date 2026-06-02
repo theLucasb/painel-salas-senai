@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel de Salas SENAI</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <header>
+
         <div>
-            <h1>SENAI</h1>
+            <img src="img/Logo_Sistema_Fiep_Padrao_Branco_Fundo_Transparente.png" width="70%" alt="Sistema FIEP">
             <h2>Painel de Salas</h2>
         </div>
 
@@ -18,17 +22,31 @@
             <div id="dataAtual"></div>
             <div id="horaAtual"></div>
         </div>
+
     </header>
 
+    <section class="resumo">
+
+        <div id="dataExibida"></div>
+
+        <div id="contadorSalas"></div>
+
+    </section>
+
     <main>
+
         <div id="salasContainer"></div>
+
     </main>
 
     <footer>
-        Atualização automática
+
+        <p id="ultimaAtualizacao"></p>
+
     </footer>
 
     <script src="script.js"></script>
 
 </body>
+
 </html>
