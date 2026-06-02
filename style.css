@@ -1,0 +1,78 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:#0f172a;
+    color:white;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 40px;
+    background:#1e293b;
+}
+
+h1{
+    font-size:3rem;
+}
+
+h2{
+    font-size:1.5rem;
+    font-weight:normal;
+}
+
+.info{
+    text-align:right;
+}
+
+#horaAtual{
+    font-size:2rem;
+    font-weight:bold;
+}
+
+#dataAtual{
+    font-size:1.2rem;
+}
+
+main{
+    flex:1;
+    padding:30px;
+}
+
+#salasContainer{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.card{
+    background:#1e293b;
+    border-left:8px solid #2563eb;
+    padding:20px;
+    border-radius:10px;
+}
+
+.sala{
+    font-size:1.8rem;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.turma{
+    font-size:2.2rem;
+}
+
+footer{
+    background:#1e293b;
+    padding:10px;
+    text-align:center;
+}
