@@ -73,8 +73,7 @@ async function carregarDados() {
             "LAB. AUTOMAÇÃO",
             "LAB. ELÉTRICA",
             "LAB. MECÂNICA",
-            "LA. MECÂNICA",
-            "NOTEBOOK HP"
+            "LA. MECÂNICA"
         ];
 
         turmasHoje.sort((a, b) => {
