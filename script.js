@@ -73,13 +73,20 @@ async function carregarDados() {
             "LAB. AUTOMAÇÃO",
             "LAB. ELÉTRICA",
             "LAB. MECÂNICA",
-            "LA. MECÂNICA"
+            "LAB. MECÂNICA"
         ];
 
         turmasHoje.sort((a, b) => {
 
-            const posA = ordemSalas.indexOf(a.sala);
-            const posB = ordemSalas.indexOf(b.sala);
+            const posA =
+                ordemSalas.indexOf(a.sala) === -1
+                    ? 999
+                    : ordemSalas.indexOf(a.sala);
+
+            const posB =
+                ordemSalas.indexOf(b.sala) === -1
+                    ? 999
+                    : ordemSalas.indexOf(b.sala);
 
             return posA - posB;
         });
@@ -104,19 +111,14 @@ async function carregarDados() {
 
         turmasHoje.forEach(item => {
 
-            const classe =
-                item.sala.includes("LAB")
-                    ? "card laboratorio"
-                    : "card";
-
             container.innerHTML += `
-                <div class="${classe}">
+                <div class="card">
                     <div class="sala">
                         ${item.sala}
                     </div>
 
                     <div class="turma">
-                        ${item.turma}
+                        ${item.turma.toUpperCase()}
                     </div>
                 </div>
             `;
