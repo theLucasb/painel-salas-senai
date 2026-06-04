@@ -48,6 +48,25 @@ function atualizarRelogio() {
 
 async function carregarDados() {
 
+    const agora = new Date();
+
+    const horaAtual = agora.getHours();
+
+/*     function estaNoHorarioDeAulas() {
+
+        const hora =
+            new Date().getHours();
+
+        return hora >= 17 && hora < 22;
+    }
+
+    if (!estaNoHorarioDeAulas()) {
+
+        mostrarModoInstitucional();
+
+        return;
+    } */
+
     try {
 
         const resposta = await fetch(
@@ -162,6 +181,36 @@ async function carregarDados() {
                 </div>
             `;
     }
+}
+
+function mostrarModoInstitucional() {
+
+    document.getElementById("dataExibida")
+        .innerHTML =
+        "PAINEL INSTITUCIONAL";
+
+    document.getElementById("contadorSalas")
+        .innerHTML = "";
+
+    document.getElementById("salasContainer")
+        .innerHTML = `
+            <div class="institucional">
+
+                <img
+                    src="img/Logo_Sistema_Fiep_Padrao_Azul_Fundo_Transparente.png"
+                    class="logoInstitucional"
+                >
+
+                <h2>
+                    Bem-vindo ao SENAI
+                </h2>
+
+                <p>
+                    Educação profissional para transformar vidas.
+                </p>
+
+            </div>
+        `;
 }
 
 atualizarRelogio();
