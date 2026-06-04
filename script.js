@@ -26,12 +26,14 @@ function atualizarRelogio() {
         agora.toLocaleTimeString("pt-BR");
 
     document.getElementById("dataAtual").textContent =
-        agora.toLocaleDateString("pt-BR", {
-            weekday: "long",
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric"
-        });
+        agora
+            .toLocaleDateString("pt-BR", {
+                weekday: "long",
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric"
+            })
+            .toUpperCase();
 
     const novaData =
         obterDataLocal();
@@ -64,7 +66,7 @@ async function carregarDados() {
 
         document.getElementById("dataExibida")
             .innerHTML =
-            `<strong>Programação:</strong> ${new Date(hoje + "T12:00:00")
+            `<strong>PROGRAMAÇÃO DE HOJE:</strong> ${new Date(hoje + "T12:00:00")
                 .toLocaleDateString("pt-BR")}`;
 
         const total = turmasHoje.length;
@@ -72,8 +74,8 @@ async function carregarDados() {
         document.getElementById("contadorSalas")
             .textContent =
             total === 1
-                ? "1 ambiente ocupado"
-                : `${total} ambientes ocupados`;
+                ? "1 AMBIENTE OCUPADO"
+                : `0${total} AMBIENTES OCUPADOS`;
 
         const ordemSalas = [
             "SALA 01",
