@@ -1,3 +1,23 @@
+function obterDataLocal() {
+
+    const agora = new Date();
+
+    const ano = agora.getFullYear();
+
+    const mes =
+        String(agora.getMonth() + 1)
+            .padStart(2, "0");
+
+    const dia =
+        String(agora.getDate())
+            .padStart(2, "0");
+
+    return `${ano}-${mes}-${dia}`;
+}
+
+let dataAtualSistema =
+    obterDataLocal();
+
 function atualizarRelogio() {
 
     const agora = new Date();
@@ -12,6 +32,16 @@ function atualizarRelogio() {
             month: "2-digit",
             year: "numeric"
         });
+
+    const novaData =
+        obterDataLocal();
+
+    if (novaData !== dataAtualSistema) {
+
+        console.log("Virada de dia detectada.");
+
+        location.reload();
+    }
 }
 
 async function carregarDados() {
@@ -24,45 +54,26 @@ async function carregarDados() {
 
         const dados = await resposta.json();
 
-        const hoje = new Date()
-            .toISOString()
-            .split("T")[0];
+        const hoje =
+            obterDataLocal();
 
-        let turmasHoje = dados.filter(
-            item => item.data === hoje
-        );
-
-        let dataExibida = hoje;
-
-        if (turmasHoje.length === 0) {
-
-            const datasDisponiveis =
-                [...new Set(dados.map(item => item.data))]
-                    .sort();
-
-            const proximaData =
-                datasDisponiveis.find(
-                    data => data >= hoje
-                );
-
-            if (proximaData) {
-
-                dataExibida = proximaData;
-
-                turmasHoje = dados.filter(
-                    item => item.data === proximaData
-                );
-            }
-        }
+        const turmasHoje =
+            dados.filter(
+                item => item.data === hoje
+            );
 
         document.getElementById("dataExibida")
             .innerHTML =
-            `<strong>Programação:</strong> ${new Date(dataExibida + "T12:00:00")
+            `<strong>Programação:</strong> ${new Date(hoje + "T12:00:00")
                 .toLocaleDateString("pt-BR")}`;
+
+        const total = turmasHoje.length;
 
         document.getElementById("contadorSalas")
             .textContent =
-            `${turmasHoje.length} ambientes ocupados`;
+            total === 1
+                ? "1 ambiente ocupado"
+                : `${total} ambientes ocupados`;
 
         const ordemSalas = [
             "SALA 01",
@@ -72,7 +83,6 @@ async function carregarDados() {
             "LAB. INFORMÁTICA",
             "LAB. AUTOMAÇÃO",
             "LAB. ELÉTRICA",
-            "LAB. MECÂNICA",
             "LAB. MECÂNICA"
         ];
 
@@ -99,12 +109,20 @@ async function carregarDados() {
         if (turmasHoje.length === 0) {
 
             container.innerHTML = `
-                <div class="card">
+                <div class="card sem-aulas">
+                    <div class="sala">
+                        SEM PROGRAMAÇÃO
+                    </div>
+
                     <div class="turma">
-                        Nenhuma aula encontrada.
+                        Nenhuma aula programada para hoje.
                     </div>
                 </div>
             `;
+
+            document.getElementById("contadorSalas")
+                .textContent =
+                "0 ambientes ocupados";
 
             return;
         }
@@ -147,10 +165,18 @@ async function carregarDados() {
 atualizarRelogio();
 carregarDados();
 
-setInterval(atualizarRelogio, 1000);
+setInterval(
+    atualizarRelogio,
+    1000
+);
 
-setInterval(carregarDados, 60000);
+setInterval(
+    carregarDados,
+    60000
+);
 
 setInterval(() => {
+
     location.reload();
+
 }, 300000);
