@@ -52,20 +52,20 @@ async function carregarDados() {
 
     const horaAtual = agora.getHours();
 
-/*     function estaNoHorarioDeAulas() {
-
-        const hora =
-            new Date().getHours();
-
-        return hora >= 17 && hora < 22;
-    }
-
-    if (!estaNoHorarioDeAulas()) {
-
-        mostrarModoInstitucional();
-
-        return;
-    } */
+    /*     function estaNoHorarioDeAulas() {
+    
+            const hora =
+                new Date().getHours();
+    
+            return hora >= 17 && hora < 22;
+        }
+    
+        if (!estaNoHorarioDeAulas()) {
+    
+            mostrarModoInstitucional();
+    
+            return;
+        } */
 
     try {
 
@@ -93,8 +93,8 @@ async function carregarDados() {
         document.getElementById("contadorSalas")
             .textContent =
             total === 1
-                ? "1 AMBIENTE OCUPADO"
-                : `0${total} AMBIENTES OCUPADOS`;
+                ? "01 AMBIENTE OCUPADO"
+                : `${String(total).padStart(2, "0")} AMBIENTES OCUPADOS`;
 
         const ordemSalas = [
             "SALA 01",
