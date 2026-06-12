@@ -18,6 +18,20 @@ function obterDataLocal() {
 let dataAtualSistema =
     obterDataLocal();
 
+
+const avisosBanner = [
+
+    "MATRÍCULAS ABERTAS!",
+
+    "SIGA  @sesisenaiiel.ampere  NO INSTAGRAM",
+
+    "EDUCAÇÃO PROFISSIONAL PARA TRANSFORMAR VIDAS",
+
+    "CONSULTE A PROGRAMAÇÃO DAS SALAS"
+];
+
+let indiceBanner = 0;
+
 function atualizarRelogio() {
 
     const agora = new Date();
@@ -46,26 +60,38 @@ function atualizarRelogio() {
     }
 }
 
+function atualizarBanner() {
+
+    document
+        .getElementById("bannerTexto")
+        .textContent =
+        avisosBanner[indiceBanner];
+
+    indiceBanner++;
+
+    if (
+        indiceBanner >=
+        avisosBanner.length
+    ) {
+
+        indiceBanner = 0;
+    }
+}
+
 async function carregarDados() {
 
-    const agora = new Date();
+    const horaAtual =
+        new Date().getHours();
 
-    const horaAtual = agora.getHours();
+    if (
+        horaAtual < 15 ||
+        horaAtual >= 23
+    ) {
 
-    /*     function estaNoHorarioDeAulas() {
-    
-            const hora =
-                new Date().getHours();
-    
-            return hora >= 17 && hora < 22;
-        }
-    
-        if (!estaNoHorarioDeAulas()) {
-    
-            mostrarModoInstitucional();
-    
-            return;
-        } */
+        mostrarModoInstitucional();
+
+        return;
+    }
 
     try {
 
@@ -185,32 +211,29 @@ async function carregarDados() {
 
 function mostrarModoInstitucional() {
 
-    document.getElementById("dataExibida")
-        .innerHTML =
+    document.getElementById(
+        "dataExibida"
+    ).innerHTML =
         "PAINEL INSTITUCIONAL";
 
-    document.getElementById("contadorSalas")
-        .innerHTML = "";
+    document.getElementById(
+        "contadorSalas"
+    ).innerHTML = "";
 
-    document.getElementById("salasContainer")
-        .innerHTML = `
-            <div class="institucional">
+    document.getElementById(
+        "salasContainer"
+    ).innerHTML = `
 
-                <img
-                    src="img/Logo_Sistema_Fiep_Padrao_Azul_Fundo_Transparente.png"
-                    class="logoInstitucional"
-                >
+        <div class="institucional">
 
-                <h2>
-                    Bem-vindo ao SENAI
-                </h2>
+            <img
+                src="img/Logo_Sistema_Fiep_Padrao_Azul_Fundo_Transparente.png"
+                class="logoInstitucional"
+            >
 
-                <p>
-                    Educação profissional para transformar vidas.
-                </p>
+        </div>
 
-            </div>
-        `;
+    `;
 }
 
 atualizarRelogio();
@@ -231,3 +254,10 @@ setInterval(() => {
     location.reload();
 
 }, 300000);
+
+atualizarBanner();
+
+setInterval(
+    atualizarBanner,
+    10000
+);
