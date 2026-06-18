@@ -1,3 +1,47 @@
+const logosInstitucionais = [
+
+    "img/Logo_Fiep_Azul_Fundo_Transparente.png",
+
+    "img/Logo_IEL_Azul_Fundo_Transparente.png",
+
+    "img/Logo_Senai_Azul_Fundo_Transparente.png",
+
+    "img/Logo_Sesi_Azul_Fundo_Transparente.png"
+];
+
+let logoAtual = 0;
+let intervaloLogos;
+
+function trocarLogoInstitucional() {
+
+    const logo =
+        document.getElementById(
+            "logoInstitucionalRotativa"
+        );
+
+    if (!logo) return;
+
+    logo.style.opacity = 0;
+
+    setTimeout(() => {
+
+        logo.src =
+            logosInstitucionais[logoAtual];
+
+        logo.style.opacity = 1;
+
+        logoAtual++;
+
+        if (
+            logoAtual >=
+            logosInstitucionais.length
+        ) {
+            logoAtual = 0;
+        }
+
+    }, 400);
+}
+
 function obterDataLocal() {
 
     const agora = new Date();
@@ -84,7 +128,7 @@ async function carregarDados() {
         new Date().getHours();
 
     if (
-        horaAtual < 15 ||
+        horaAtual < 17 ||
         horaAtual >= 23
     ) {
 
@@ -150,6 +194,13 @@ async function carregarDados() {
 
         const container =
             document.getElementById("salasContainer");
+        document
+            .getElementById("qrFlutuante")
+            .style.display = "block";
+
+        container.classList.remove(
+            "modo-institucional"
+        );
 
         container.innerHTML = "";
 
@@ -211,6 +262,10 @@ async function carregarDados() {
 
 function mostrarModoInstitucional() {
 
+    document
+        .getElementById("qrFlutuante")
+        .style.display = "none";
+
     document.getElementById(
         "dataExibida"
     ).innerHTML =
@@ -224,16 +279,88 @@ function mostrarModoInstitucional() {
         "salasContainer"
     ).innerHTML = `
 
-        <div class="institucional">
+        <div class="institucional-layout">
 
-            <img
-                src="img/Logo_Sistema_Fiep_Padrao_Azul_Fundo_Transparente.png"
-                class="logoInstitucional"
-            >
+            <div class="logos-rotativas">
+
+                <img
+                    id="logoInstitucionalRotativa"
+                    src="img/Logo_Sesi_Azul_Fundo_Transparente.png"
+                >
+
+            </div>
+
+            <div class="qr-institucional">
+
+                <h3>
+                    MATRÍCULAS ABERTAS
+                </h3>
+
+                <img
+                    src="img/qrcode-instagram.png"
+                >
+
+                <p>
+                    Escaneie para saber mais
+                </p>
+
+            </div>
 
         </div>
 
     `;
+
+    const container =
+        document.getElementById(
+            "salasContainer"
+        );
+
+    container.classList.add(
+        "modo-institucional"
+    );
+
+    container.innerHTML = `
+    <div class="institucional-layout">
+
+        <div class="logos-rotativas">
+
+            <img
+                id="logoInstitucionalRotativa"
+                src="img/Logo_Sesi_Azul_Fundo_Transparente.png"
+            >
+
+        </div>
+
+        <div class="qr-institucional">
+
+            <h3>MATRÍCULAS ABERTAS</h3>
+
+            <img
+                src="img/qrcode-instagram.png"
+            >
+
+            <p>
+                Escaneie para saber mais
+            </p>
+
+        </div>
+
+    </div>
+`;
+    if (!intervaloLogos) {
+
+        intervaloLogos = setInterval(
+            trocarLogoInstitucional,
+            8000
+        );
+    }
+    if (intervaloLogos) {
+
+        clearInterval(intervaloLogos);
+
+        intervaloLogos = null;
+    }
+    trocarLogoInstitucional();
 }
 
 atualizarRelogio();
@@ -260,4 +387,9 @@ atualizarBanner();
 setInterval(
     atualizarBanner,
     10000
+);
+
+setInterval(
+    trocarLogoInstitucional,
+    8000
 );

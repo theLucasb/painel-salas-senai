@@ -200,7 +200,7 @@ footer {
 
     margin-top: auto;
 
-    padding: 15px;
+    padding: 8px;
 
     position: relative;
 }
@@ -275,7 +275,7 @@ footer {
 
     text-align: center;
 
-    padding: 12px;
+    padding: 8px;
 
     font-size: clamp(1rem,
             1.4vw,
@@ -306,6 +306,90 @@ footer {
 
 .qr-fixo img {
     width: 115px;
+}
+
+.institucional-layout {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 55% 45%;
+
+    align-items: center;
+
+    gap: 30px;
+
+    padding: 10px;
+}
+
+.logos-rotativas {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+.logos-rotativas img {
+
+    width: 100%;
+
+    max-width: 1200px;
+
+    max-height: 500px;
+
+    object-fit: contain;
+}
+
+.qr-institucional {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+.qr-institucional h3 {
+
+    color: #003366;
+
+    font-size: 1.8rem;
+
+    margin-bottom: 10px;
+}
+
+.qr-institucional img {
+
+    width: 250px;
+
+    max-width: 100%;
+}
+
+.qr-institucional p {
+
+    margin-top: 15px;
+
+    font-size: 1.3rem;
+}
+
+.modo-institucional {
+
+    display: flex !important;
+
+    justify-content: center;
+
+    align-items: center;
+
+    width: 100%;
+
+    height: 100%;
 }
 
 #bannerTexto {
