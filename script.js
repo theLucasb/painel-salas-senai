@@ -128,7 +128,7 @@ async function carregarDados() {
         new Date().getHours();
 
     if (
-        horaAtual < 17 ||
+        horaAtual < 8 ||
         horaAtual >= 23
     ) {
 
@@ -170,7 +170,8 @@ async function carregarDados() {
             "SALA 01",
             "SALA 02",
             "SALA 03",
-            "SALA MÓVEL",
+            "SALA MÓVEL 01",
+            "SALA MÓVEL 02",
             "LAB. INFORMÁTICA",
             "LAB. AUTOMAÇÃO",
             "LAB. ELÉTRICA",
